@@ -1,0 +1,11 @@
+/* 
+    Created on : Sep 23, 2014, 12:44:51 PM
+    Author     : Ivan Lubis
+*/
+
+.navbar-header .logo {padding:0;}
+.price-old {text-decoration: line-through;color:#CCCCCC;}
+.price-new {color:#FF0000;}
+.catalog-item .item-description .item-title {display: block;width:100%;padding-left: 30px;margin-left: 0;}
+.catalog-item .item-description .item-price {display: block;width:100%;padding-left: 30px;margin-left: 0;margin-right:0;}
+.items-cart__inner .cart-amount {font-size: 15px;}
