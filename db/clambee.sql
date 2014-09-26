@@ -19,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `clambee`
 --
-CREATE DATABASE IF NOT EXISTS `clambee` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `clambee`;
 
 -- --------------------------------------------------------
 
