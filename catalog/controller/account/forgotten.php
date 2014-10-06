@@ -1,121 +1,130 @@
 <?php
+
 class ControllerAccountForgotten extends Controller {
-	private $error = array();
 
-	public function index() {
-		if ($this->customer->isLogged()) {
-			$this->redirect($this->url->link('account/account', '', 'SSL'));
-		}
+    private $error = array();
 
-		$this->language->load('account/forgotten');
+    public function index() {
+        if ($this->customer->isLogged()) {
+            $this->redirect($this->url->link('account/account', '', 'SSL'));
+        }
 
-		$this->document->setTitle($this->language->get('heading_title'));
+        if (isset($this->request->server['HTTPS']) && (($this->request->server['HTTPS'] == 'on') || ($this->request->server['HTTPS'] == '1'))) {
+            $server = $this->config->get('config_ssl');
+        } else {
+            $server = $this->config->get('config_url');
+        }
 
-		$this->load->model('account/customer');
+        $this->language->load('account/forgotten');
 
-		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
-			$this->language->load('mail/forgotten');
+        $this->document->setTitle($this->language->get('heading_title'));
 
-			$password = substr(sha1(uniqid(mt_rand(), true)), 0, 10);
+        $this->load->model('account/customer');
 
-			$this->model_account_customer->editPassword($this->request->post['email'], $password);
+        if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
+            $this->language->load('mail/forgotten');
 
-			$subject = sprintf($this->language->get('text_subject'), $this->config->get('config_name'));
+            $password = substr(sha1(uniqid(mt_rand(), true)), 0, 10);
 
-			$message  = sprintf($this->language->get('text_greeting'), $this->config->get('config_name')) . "\n\n";
-			$message .= $this->language->get('text_password') . "\n\n";
-			$message .= $password;
+            $this->model_account_customer->editPassword($this->request->post['email'], $password);
 
-			$mail = new Mail();
-			$mail->protocol = $this->config->get('config_mail_protocol');
-			$mail->parameter = $this->config->get('config_mail_parameter');
-			$mail->hostname = $this->config->get('config_smtp_host');
-			$mail->username = $this->config->get('config_smtp_username');
-			$mail->password = $this->config->get('config_smtp_password');
-			$mail->port = $this->config->get('config_smtp_port');
-			$mail->timeout = $this->config->get('config_smtp_timeout');				
-			$mail->setTo($this->request->post['email']);
-			$mail->setFrom($this->config->get('config_email'));
-			$mail->setSender($this->config->get('config_name'));
-			$mail->setSubject(html_entity_decode($subject, ENT_QUOTES, 'UTF-8'));
-			$mail->setText(html_entity_decode($message, ENT_QUOTES, 'UTF-8'));
-			$mail->send();
+            $subject = sprintf($this->language->get('text_subject'), $this->config->get('config_name'));
 
-			$this->session->data['success'] = $this->language->get('text_success');
+            $message = sprintf($this->language->get('text_greeting'), $this->config->get('config_name')) . "\n\n";
+            $message .= $this->language->get('text_password') . "\n\n";
+            $message .= $password;
 
-			$this->redirect($this->url->link('account/login', '', 'SSL'));
-		}
+            $mail = new Mail();
+            $mail->protocol = $this->config->get('config_mail_protocol');
+            $mail->parameter = $this->config->get('config_mail_parameter');
+            $mail->hostname = $this->config->get('config_smtp_host');
+            $mail->username = $this->config->get('config_smtp_username');
+            $mail->password = $this->config->get('config_smtp_password');
+            $mail->port = $this->config->get('config_smtp_port');
+            $mail->timeout = $this->config->get('config_smtp_timeout');
+            $mail->setTo($this->request->post['email']);
+            $mail->setFrom($this->config->get('config_email'));
+            $mail->setSender($this->config->get('config_name'));
+            $mail->setSubject(html_entity_decode($subject, ENT_QUOTES, 'UTF-8'));
+            $mail->setText(html_entity_decode($message, ENT_QUOTES, 'UTF-8'));
+            $mail->send();
 
-		$this->data['breadcrumbs'] = array();
+            $this->session->data['success'] = $this->language->get('text_success');
 
-		$this->data['breadcrumbs'][] = array(
-			'text'      => $this->language->get('text_home'),
-			'href'      => $this->url->link('common/home'),        	
-			'separator' => false
-		);
+            $this->redirect($this->url->link('account/login', '', 'SSL'));
+        }
 
-		$this->data['breadcrumbs'][] = array(
-			'text'      => $this->language->get('text_account'),
-			'href'      => $this->url->link('account/account', '', 'SSL'),     	
-			'separator' => $this->language->get('text_separator')
-		);
+        $this->data['breadcrumbs'] = array();
 
-		$this->data['breadcrumbs'][] = array(
-			'text'      => $this->language->get('text_forgotten'),
-			'href'      => $this->url->link('account/forgotten', '', 'SSL'),       	
-			'separator' => $this->language->get('text_separator')
-		);
+        $this->data['breadcrumbs'][] = array(
+            'text' => $this->language->get('text_home'),
+            'href' => $this->url->link('common/home'),
+            'separator' => false
+        );
 
-		$this->data['heading_title'] = $this->language->get('heading_title');
+        $this->data['breadcrumbs'][] = array(
+            'text' => $this->language->get('text_account'),
+            'href' => $this->url->link('account/account', '', 'SSL'),
+            'separator' => $this->language->get('text_separator')
+        );
 
-		$this->data['text_your_email'] = $this->language->get('text_your_email');
-		$this->data['text_email'] = $this->language->get('text_email');
+        $this->data['breadcrumbs'][] = array(
+            'text' => $this->language->get('text_forgotten'),
+            'href' => $this->url->link('account/forgotten', '', 'SSL'),
+            'separator' => $this->language->get('text_separator')
+        );
 
-		$this->data['entry_email'] = $this->language->get('entry_email');
+        $this->data['heading_title'] = $this->language->get('heading_title');
 
-		$this->data['button_continue'] = $this->language->get('button_continue');
-		$this->data['button_back'] = $this->language->get('button_back');
+        $this->data['text_your_email'] = $this->language->get('text_your_email');
+        $this->data['text_email'] = $this->language->get('text_email');
 
-		if (isset($this->error['warning'])) {
-			$this->data['error_warning'] = $this->error['warning'];
-		} else {
-			$this->data['error_warning'] = '';
-		}
+        $this->data['entry_email'] = $this->language->get('entry_email');
 
-		$this->data['action'] = $this->url->link('account/forgotten', '', 'SSL');
+        $this->data['button_continue'] = $this->language->get('button_continue');
+        $this->data['button_back'] = $this->language->get('button_back');
 
-		$this->data['back'] = $this->url->link('account/login', '', 'SSL');
+        if (isset($this->error['warning'])) {
+            $this->data['error_warning'] = $this->error['warning'];
+        } else {
+            $this->data['error_warning'] = '';
+        }
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/account/forgotten.tpl')) {
-			$this->template = $this->config->get('config_template') . '/template/account/forgotten.tpl';
-		} else {
-			$this->template = 'default/template/account/forgotten.tpl';
-		}
+        $this->data['action'] = $this->url->link('account/forgotten', '', 'SSL');
 
-		$this->children = array(
-			'common/column_left',
-			'common/column_right',
-			'common/content_top',
-			'common/content_bottom',
-			'common/footer',
-			'common/header'	
-		);
+        //$this->data['back'] = $this->url->link('account/login', '', 'SSL');
+        $this->data['back'] = $server.'login';
 
-		$this->response->setOutput($this->render());		
-	}
+        if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/account/forgotten.tpl')) {
+            $this->template = $this->config->get('config_template') . '/template/account/forgotten.tpl';
+        } else {
+            $this->template = 'default/template/account/forgotten.tpl';
+        }
 
-	protected function validate() {
-		if (!isset($this->request->post['email'])) {
-			$this->error['warning'] = $this->language->get('error_email');
-		} elseif (!$this->model_account_customer->getTotalCustomersByEmail($this->request->post['email'])) {
-			$this->error['warning'] = $this->language->get('error_email');
-		}
+        $this->children = array(
+            'common/column_left',
+            'common/column_right',
+            'common/content_top',
+            'common/content_bottom',
+            'common/footer',
+            'common/header'
+        );
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
-	}
+        $this->response->setOutput($this->render());
+    }
+
+    protected function validate() {
+        if (!isset($this->request->post['email'])) {
+            $this->error['warning'] = $this->language->get('error_email');
+        } elseif (!$this->model_account_customer->getTotalCustomersByEmail($this->request->post['email'])) {
+            $this->error['warning'] = $this->language->get('error_email');
+        }
+
+        if (!$this->error) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }
-?>

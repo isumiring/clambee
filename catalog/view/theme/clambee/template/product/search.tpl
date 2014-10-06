@@ -5,6 +5,9 @@
     <!-- content -->
     <div class="col-md-9 col-xs-12 col-sm-9 col-lg-9 catalog">
         <div class="row filter">
+            <div class="col-md-12 title-list">
+                <h2><?php echo $heading_title; ?></h2>
+            </div>
             <div class="col-md-3 col-xs-6 col-lg-3">
                 <div class="sort-by sort">
                     <span class=""><?php echo $text_sort; ?></span>
@@ -83,6 +86,5 @@
 
 <?php echo $featured; ?>
 <?php echo $about; ?>
-
 
 <?php echo $footer; ?>

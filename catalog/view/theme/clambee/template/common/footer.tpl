@@ -78,17 +78,17 @@
 <!-- FOOTER start -->
 </div>
 </div>
-<script type="text/javascript" src="catalog/view/theme/clambee/js/jquery-1.10.2.js"></script>
-<script type="text/javascript" src="catalog/view/theme/clambee/js/jquery-ui-1.10.1.custom.js"></script>
+<!--<script type="text/javascript" src="catalog/view/theme/clambee/js/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="catalog/view/theme/clambee/js/jquery-ui-1.10.1.custom.js"></script>-->
 <script type="text/javascript" src="catalog/view/theme/clambee/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="catalog/view/theme/clambee/js/bootstrap-select.js"></script>
 <script type="text/javascript" src="catalog/view/theme/clambee/js/jquery.flexnav.min.js"></script>
 <script type="text/javascript" src="catalog/view/theme/clambee/js/jquery.jpanelmenu.min.js"></script>
 
 <!--[if lt IE 9]>
-<script src="js/css3-mediaqueries.js"></script>
-<script src="js/html5shiv.js"></script>
-<script src="js/html5shiv-printshiv.js"></script>
+<script src="catalog/view/theme/clambee/js/css3-mediaqueries.js"></script>
+<script src="catalog/view/theme/clambee/js/html5shiv.js"></script>
+<script src="catalog/view/theme/clambee/js/html5shiv-printshiv.js"></script>
 <![endif]-->
 <script>
     $(function() {
@@ -106,11 +106,11 @@
         "use strict";
         $('.selectpicker').selectpicker();
     });
-    $(function() {
+    /*$(function() {
         "use strict";
         var jPM = $.jPanelMenu();
         jPM.on();
-    });
+    });*/
 </script>
 </body>
 </html>

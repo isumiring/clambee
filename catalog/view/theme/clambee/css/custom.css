@@ -9,3 +9,50 @@
 .catalog-item .item-description .item-title {display: block;width:100%;padding-left: 30px;margin-left: 0;}
 .catalog-item .item-description .item-price {display: block;width:100%;padding-left: 30px;margin-left: 0;margin-right:0;}
 .items-cart__inner .cart-amount {font-size: 15px;}
+.filter .sort-by {margin-left: 0;}
+.title-list h2 {padding: 0 20px 20px 0;}
+.product-description .quantity {float: none;}
+#notification {padding:0;}
+#notification .alert {margin-bottom:0;}
+.product-description h1.product-title {margin-top: 0;}
+.login .forgot-pass-back {margin: 40px 0 0 120px;display: block;font-family: 'benderlight_italic', sans-serif;}
+.forgotpass form {margin-left: 0;}
+.forgotpass h2 {padding-left: 0;}
+.forgotpass .form-group {padding: 0 !important;}
+.required {color:#FF0000;}
+.register h1, .register p {padding-left:30px;}
+#footer .newsletter .email-subscribe button {z-index: 0;}
+.form-basket .main-total {min-height: 35px;}
+table.cart_table button {border: none;background-color: #fff;}
+.table.cart_table td.cart_action {padding: 2px;}
+.form-basket .main-total div {margin-top: 0;}
+.table.cart_table a.cont {color:#fff;}
+.table.cart_table a.cont:hover {color:#817C8A;}
+.checkout-page {margin-bottom: 20px;}
+.checkout-page input[type="radio"] {display: block;margin-left: 10px;margin-right:5px;}
+.checkout-page .radio {margin-bottom: 10px;}
+.checkout-page .radio + .radio {margin-top: 0;}
+.checkout-page .checkbox {padding-top: 15px; border-top: 1px solid #DDDDDD;margin-left: 0;margin-bottom: 40px;}
+.checkout-page .checkbox input {margin-left: 0;}
+.checkout-heading {
+    background: #222429;
+    border: 1px solid #222429;
+    padding: 8px;
+    font-size: 15px;
+    color: #fff;
+    margin-bottom: 15px;
+    border-radius: 4px;
+}
+.checkout-heading a {
+    float: right;
+    margin-top: 1px;
+    font-weight: normal;
+    text-decoration: none;
+    color:#fff;
+    cursor: pointer;
+}
+.checkout-heading a:hover {text-decoration: underline;}
+.checkout-content {margin:0 20px 20px;}
+.checkout-content button {margin-bottom: 20px;}
+.checkout .tmp_message {display: none;}
+

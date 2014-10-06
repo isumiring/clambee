@@ -116,6 +116,7 @@ class ControllerModuleCart extends Controller {
                 'href' => $this->url->link('product/product', 'product_id=' . $product['product_id']),
                 'recurring' => $product['recurring'],
                 'profile' => $product['profile_name'],
+                'remove' => $this->url->link('checkout/cart', 'remove=' . $product['key']),
             );
         }
 
@@ -146,5 +147,3 @@ class ControllerModuleCart extends Controller {
     }
 
 }
-
-?>

@@ -84,5 +84,4 @@
 <?php echo $featured; ?>
 <?php echo $about; ?>
 
-
 <?php echo $footer; ?>

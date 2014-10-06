@@ -29,21 +29,18 @@
         <link rel="stylesheet" href="catalog/view/theme/clambee/css/flexnav.css" />
         <link rel="stylesheet" href="catalog/view/theme/clambee/css/style.css"/>
         <link rel="stylesheet" href="catalog/view/theme/clambee/css/custom.css"/>
-        <!--[if lt IE 9]><link rel="stylesheet" href="css/ie.css"/><![endif]-->
+        <!--[if lt IE 9]><link rel="stylesheet" href="catalog/view/theme/clambee/css/ie.css"/><![endif]-->
         <!-- style -->
 
         <script type="text/javascript" src="catalog/view/javascript/jquery/jquery-1.7.1.min.js"></script>
         <script type="text/javascript" src="catalog/view/javascript/jquery/ui/jquery-ui-1.8.16.custom.min.js"></script>
         <link rel="stylesheet" type="text/css" href="catalog/view/javascript/jquery/ui/themes/ui-lightness/jquery-ui-1.8.16.custom.css" />
-        <script type="text/javascript" src="catalog/view/javascript/common.js"></script>
+<script type="text/javascript" src="catalog/view/javascript/common.js"></script>
+        
         <?php foreach ($scripts as $script) { ?>
         <script type="text/javascript" src="<?php echo $script; ?>"></script>
         <?php } ?>
-        <!--[if IE 7]> 
-        <link rel="stylesheet" type="text/css" href="catalog/view/theme/clambee/stylesheet/ie7.css" />
-        <![endif]-->
         <!--[if lt IE 7]>
-        <link rel="stylesheet" type="text/css" href="catalog/view/theme/clambee/stylesheet/ie6.css" />
         <script type="text/javascript" src="catalog/view/javascript/DD_belatedPNG_0.0.8a-min.js"></script>
         <script type="text/javascript">
         DD_belatedPNG.fix('#logo img');
@@ -91,9 +88,11 @@
                                     <ul class="main-menu">
 
                                         <li><a href="<?php echo $home; ?>">Home</a></li>
+                                        <li><a href="<?php echo $about; ?>">About</a></li>
+                                        <li><a href="<?php echo $contact; ?>">Contact</a></li>
                                         <!-- list product menu -->
                                         <li>
-                                            <a href="#">Products</a>
+                                            <a href="#">Gallerry Clambee</a>
                                             <?php if ($categories) { ?>
                                             <div>
                                                 <div class="main-menu-column">
@@ -120,8 +119,6 @@
                                         <!-- end of list product menu -->
 
 
-                                        <li><a href="#">About</a></li>
-                                        <li><a href="#">Contact</a></li>
                                     </ul>
                                     <!-- disabled
                                     <div class="change-local-wrapper">
@@ -325,3 +322,7 @@
             </header>        
             <!-- HEADER end -->
             <div class="container content <?php if (isset($this->request->get['route']) || $this->request->get['route'] != 'common/home') echo 'internal-pages'; ?>">
+                <div class="row">
+                    <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12" id="notification" tabindex="1">
+                    </div>
+                </div>

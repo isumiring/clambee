@@ -372,7 +372,7 @@ class ControllerProductCategory extends Controller {
             $pagination->text = $this->language->get('text_pagination');
             $pagination->url = $this->url->link('product/category', 'path=' . $this->request->get['path'] . $url . '&page={page}');
 
-            $this->data['pagination'] = $pagination->render();
+            $this->data['pagination'] = $pagination->render_front();
 
             $this->data['sort'] = $sort;
             $this->data['order'] = $order;
@@ -387,6 +387,8 @@ class ControllerProductCategory extends Controller {
             }
 
             $this->children = array(
+                'widget/featured',
+                'widget/about',
                 'widget/filter_left',
                 'common/footer',
                 'common/header'
